@@ -10,7 +10,7 @@ export const Container = styled.div`
   overflow: hidden;
 
   span {
-    background: ${shade(.2, '#FE2E2C')};
+    background: ${shade(.2, '#303D8B')};
     height: 56px;
     color: var(--primary-color);
     padding: 0 16px;
@@ -31,7 +31,7 @@ export const Container = styled.div`
     transition: background .2s;
 
     &:hover {
-      background: ${shade(.2, '#FE2E2C')};
+      background: ${shade(.2, '#303D8B')};
     }
   }
 `;

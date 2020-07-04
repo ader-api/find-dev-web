@@ -29,7 +29,7 @@ export const Content = styled.div`
     width: 340px;
 
     a {
-      color: var(--button-color);
+      color: var(--link-color);
       display: block;
       margin-top: 24px;
       text-decoration: none;

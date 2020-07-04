@@ -9,7 +9,10 @@ export default createGlobalStyle`
     --title-color: #090E45;
     --text-color: #05061C;
 
-    --button-color: #FE2E2C;
+    --button-color: #303D8B;
+    --link-color: #FE2E2C;
+
+    --error-color: #e63946;
   }
 
   * {
