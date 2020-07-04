@@ -41,4 +41,13 @@ export default createGlobalStyle`
     cursor: pointer;
     background-color: var(--button-color);
   }
+
+  .logo {
+    width: 300px;
+    object-fit: contain;
+
+    @media(max-width: 575px) {
+      width: 190px;
+    }
+  }
 `;

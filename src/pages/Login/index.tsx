@@ -67,7 +67,7 @@ const Login: React.FC = () => {
               Log in
             </Button>
 
-            <Link to="/">
+            <Link to="/register">
               Register
             </Link>
           </Form>

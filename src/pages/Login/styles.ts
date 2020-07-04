@@ -5,6 +5,10 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: stretch;
+
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 15px;
 `;
 
 export const Content = styled.div`

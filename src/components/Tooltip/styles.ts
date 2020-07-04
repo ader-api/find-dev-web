@@ -10,6 +10,7 @@ export const Container = styled.div`
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
+    text-align: center;
     opacity: 0;
     transition: opacity .4s;
     visibility: hidden;
@@ -31,6 +32,7 @@ export const Container = styled.div`
       border-width: 6px 6px 0 6px;
     }
   }
+
   &:hover span {
     opacity: 1;
     visibility: visible;
