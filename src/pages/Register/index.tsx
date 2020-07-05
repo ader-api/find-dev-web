@@ -2,11 +2,15 @@ import React, {
   useRef,
   useCallback,
 } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCornerDownRight } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+
+import api from '../../services/api';
+
+import { useToast } from '../../hooks/toast';
 
 import getValidationErros from '../../utils/getValidationErrors';
 
@@ -30,6 +34,9 @@ interface FormRegisterData {
 
 const Register: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
+
+  const { addToast } = useToast();
 
   const handleRegisterSubmit = useCallback(async (data: FormRegisterData) => {
     try {
@@ -51,14 +58,30 @@ const Register: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
+
+      await api.post('/developers', data);
+
+      history.push('/');
+
+      addToast({
+        type: 'success',
+        title: 'Account created',
+        description: 'Make the login to browse on FindDev',
+      });
     } catch(err) {
       if(err instanceof Yup.ValidationError) {
         const errors = getValidationErros(err);
 
         formRef.current?.setErrors(errors);
       }
+
+      addToast({
+        type: 'error',
+        title: 'Error on create an account',
+        description: 'Verify the credentials and try again',
+      });
     }
-  }, []);
+  }, [addToast, history]);
 
   return (
     <Container>

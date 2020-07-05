@@ -67,7 +67,7 @@ const Login: React.FC = () => {
 
       addToast({
         type: 'error',
-        title: 'Error on make log in',
+        title: 'Error on make login',
         description: 'Verify the credentials and try again',
       });
     }
