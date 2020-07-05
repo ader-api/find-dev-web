@@ -3,11 +3,12 @@ import React, {
   useCallback,
 } from 'react';
 import { FiLock, FiMail, FiLogIn } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 
 import getValidationErros from '../../utils/getValidationErrors';
@@ -30,7 +31,9 @@ interface LoginFormData {
 
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
 
+  const { logIn } = useAuth();
   const { addToast } = useToast();
 
   const handleLoginSubmit = useCallback(async (data: LoginFormData) => {
@@ -44,7 +47,17 @@ const Login: React.FC = () => {
         abortEarly: false,
       });
 
+      await logIn({
+        email: data.email,
+        password: data.password,
+      });
 
+      history.push('/');
+
+      addToast({
+        type: 'success',
+        title: 'Logged in',
+      });
     } catch(err) {
       if(err instanceof Yup.ValidationError) {
         const errors = getValidationErros(err);
@@ -54,8 +67,8 @@ const Login: React.FC = () => {
 
       addToast({
         type: 'error',
-        title: 'Erro ao fazer login',
-        description: 'Cheque as credenciais e tente novamente',
+        title: 'Error on make log in',
+        description: 'Verify the credentials and try again',
       });
     }
   }, [addToast]);
