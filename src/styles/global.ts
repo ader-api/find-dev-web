@@ -12,7 +12,14 @@ export default createGlobalStyle`
     --button-color: #303D8B;
     --link-color: #FE2E2C;
 
-    --error-color: #e63946;
+    --info-color: #dee2e6;
+    --info-text-color: #090E45;
+
+    --success-color: #b2ff9e;
+    --success-text-color: #283618;
+
+    --error-color: #ff686b;
+    --error-text-color: #540b0e;
   }
 
   * {
@@ -39,7 +46,6 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
-    background-color: var(--button-color);
   }
 
   .logo {

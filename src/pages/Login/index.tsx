@@ -8,6 +8,8 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import { useToast } from '../../hooks/toast';
+
 import getValidationErros from '../../utils/getValidationErrors';
 
 import loginImage from '../../assets/login.jpg';
@@ -29,6 +31,8 @@ interface LoginFormData {
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
+  const { addToast } = useToast();
+
   const handleLoginSubmit = useCallback(async (data: LoginFormData) => {
     try {
       const schema = Yup.object().shape({
@@ -47,8 +51,14 @@ const Login: React.FC = () => {
 
         formRef.current?.setErrors(errors);
       }
+
+      addToast({
+        type: 'error',
+        title: 'Erro ao fazer login',
+        description: 'Cheque as credenciais e tente novamente',
+      });
     }
-  }, []);
+  }, [addToast]);
 
   return (
     <Container>
