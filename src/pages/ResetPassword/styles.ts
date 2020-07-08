@@ -4,19 +4,25 @@ import { shade } from 'polished';
 export const Container = styled.div`
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: stretch;
 
   max-width: 1200px;
   margin: auto;
   padding: 0 15px;
 `;
 
-export const Header = styled.div`
-  height: 64px;
-
+export const Content = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-around;
+
+  width: 100%;
+  text-align: center;
+
+  @media(max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 
   a {
     color: var(--link-color);
@@ -37,21 +43,6 @@ export const Header = styled.div`
       color: var(--button-color);
       margin-right: 16px;
     }
-  }
-`;
-
-export const Content = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  height: calc(100vh - 64px);
-  width: 100%;
-  text-align: center;
-
-  @media(max-width: 768px) {
-    flex-direction: column;
-    justify-content: center;
   }
 
   .logo {

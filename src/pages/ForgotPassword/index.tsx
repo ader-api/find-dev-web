@@ -20,6 +20,7 @@ import Input from '../../components/Input';
 
 import {
   Container,
+  Header,
   Content,
 } from './styles';
 
@@ -34,6 +35,8 @@ const ForgotPassword: React.FC = () => {
 
   const handleForgotPasswordSubmit = useCallback(async (data: ForgotPasswordFormData) => {
     try {
+      formRef.current?.setErrors({});
+
       const schema = Yup.object().shape({
         email: Yup.string().email().required('E-mail required'),
       });
@@ -56,21 +59,23 @@ const ForgotPassword: React.FC = () => {
 
       addToast({
         type: 'error',
-        title: 'Error on make ForgotPassword',
-        description: 'Verify the credentials and try again',
+        title: 'Error on send e-mail',
+        description: 'Verify the e-mail and try again',
       });
     }
   }, [addToast]);
 
   return (
     <Container>
+      <Header>
+        <Link to="/">
+          <FiArrowLeft size={20} />
+          Go back
+        </Link>
+      </Header>
+
       <Content>
         <div>
-          <Link to="/">
-            <FiArrowLeft size={20} />
-            Go back
-          </Link>
-
           <img className="logo" src={logo} alt="FindDev" />
 
           <h1>Forgot password</h1>
