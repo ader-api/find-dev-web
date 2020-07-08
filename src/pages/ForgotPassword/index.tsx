@@ -2,18 +2,17 @@ import React, {
   useRef,
   useCallback,
 } from 'react';
-import { FiLock, FiMail, FiLogIn } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { FiMail, FiArrowLeft, FiCornerDownRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 
 import getValidationErros from '../../utils/getValidationErrors';
 
-import loginImage from '../../assets/login.jpg';
+import ForgotPasswordImage from '../../assets/forgot-password.png';
 import logo from '../../assets/logo.svg';
 
 import Button from '../../components/Button';
@@ -24,39 +23,29 @@ import {
   Content,
 } from './styles';
 
-interface LoginFormData {
+interface ForgotPasswordFormData {
   email: string;
-  password: string;
 }
 
-const Login: React.FC = () => {
+const ForgotPassword: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const history = useHistory();
 
-  const { logIn } = useAuth();
   const { addToast } = useToast();
 
-  const handleLoginSubmit = useCallback(async (data: LoginFormData) => {
+  const handleForgotPasswordSubmit = useCallback(async (data: ForgotPasswordFormData) => {
     try {
       const schema = Yup.object().shape({
         email: Yup.string().email().required('E-mail required'),
-        password: Yup.string().required('Password required'),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
 
-      await logIn({
-        email: data.email,
-        password: data.password,
-      });
-
-      history.push('/');
-
       addToast({
         type: 'success',
-        title: 'Logged in',
+        title: 'E-mail sent',
+        description: 'An e-mail was sent. Please check this.',
       });
     } catch(err) {
       if(err instanceof Yup.ValidationError) {
@@ -67,7 +56,7 @@ const Login: React.FC = () => {
 
       addToast({
         type: 'error',
-        title: 'Error on make login',
+        title: 'Error on make ForgotPassword',
         description: 'Verify the credentials and try again',
       });
     }
@@ -77,33 +66,28 @@ const Login: React.FC = () => {
     <Container>
       <Content>
         <div>
+          <Link to="/">
+            <FiArrowLeft size={20} />
+            Go back
+          </Link>
+
           <img className="logo" src={logo} alt="FindDev" />
 
-          <h1>Complete your team</h1>
+          <h1>Forgot password</h1>
 
-          <Form ref={formRef} onSubmit={handleLoginSubmit}>
+          <Form ref={formRef} onSubmit={handleForgotPasswordSubmit}>
             <Input name="email" type="email" placeholder="E-mail" icon={FiMail} />
 
-            <Input name="password" type="password" placeholder="Password" icon={FiLock} />
-
-            <Button icon={FiLogIn}>
-              Log in
+            <Button icon={FiCornerDownRight}>
+              Send
             </Button>
-
-            <Link to="/forgot-password">
-              Forgot password
-            </Link>
-
-            <Link to="/register">
-              Register
-            </Link>
           </Form>
         </div>
 
-        <img src={loginImage} alt="Log in"/>
+        <img src={ForgotPasswordImage} alt="Log in"/>
       </Content>
     </Container>
   );
 };
 
-export default Login;
+export default ForgotPassword;

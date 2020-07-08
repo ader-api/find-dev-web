@@ -35,7 +35,6 @@ export const Header = styled.div`
       margin-right: 16px;
     }
   }
-
 `;
 
 export const Content = styled.div`

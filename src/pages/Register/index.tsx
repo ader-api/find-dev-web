@@ -90,7 +90,7 @@ const Register: React.FC = () => {
 
         <Link to="/">
           <FiArrowLeft size={20} />
-          Back
+          Go back
         </Link>
       </Header>
 
