@@ -38,6 +38,10 @@
 
 ![](/github/register.png)
 
+![](/github/forgot-password.png)
+
+![](/github/reset-password.png)
+
 ## 👍 Contribute <a name="contribute"/>
 
 - Fork this repository.
