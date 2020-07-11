@@ -24,12 +24,15 @@
 
 ## 📚 Features <a name="features"/>
 
-- Create a developer
 - Login
+- Register
+- List developers (under in development)
+- Theme switcher (light / dark)
 
 ## 📌 Technologies <a name="technologies"/>
 
 - [ReactJS](https://pt-br.reactjs.org/)
+- [React Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## 💻 Project <a name="project"/>
