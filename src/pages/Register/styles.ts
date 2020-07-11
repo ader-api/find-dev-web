@@ -18,23 +18,26 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
 
+  img {
+    height: 44px;
+  }
+
   a {
     color: var(--link-color);
     text-decoration: none;
     display: flex;
     align-items: center;
-    margin-bottom: 21px;
 
     &:hover {
       color: ${shade(.2, '#FE2E2C')};
 
       svg {
-        color: ${shade(.2, '#303D8B')};
+        color: ${shade(.2, '#FE2E2C')};
       }
     }
 
     svg {
-      color: var(--button-color);
+      color: var(--link-color);
       margin-right: 16px;
     }
   }
@@ -52,10 +55,6 @@ export const Content = styled.div`
   @media(max-width: 768px) {
     flex-direction: column;
     justify-content: center;
-  }
-
-  .logo {
-    margin-bottom: 16px;
   }
 
   form {

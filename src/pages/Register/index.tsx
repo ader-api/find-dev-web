@@ -95,6 +95,8 @@ const Register: React.FC = () => {
   return (
     <Container>
       <Header>
+        <img className="logo" src={logo} alt="FindDev" />
+
         <Link to="/">
           <FiArrowLeft size={20} />
           Go back
@@ -103,8 +105,6 @@ const Register: React.FC = () => {
 
       <Content>
         <div>
-          <img className="logo" src={logo} alt="FindDev" />
-
           <h1>Register</h1>
 
           <Form ref={formRef} onSubmit={handleRegisterSubmit}>
