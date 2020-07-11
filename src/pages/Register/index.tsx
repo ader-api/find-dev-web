@@ -1,6 +1,7 @@
 import React, {
   useRef,
   useCallback,
+  useContext,
 } from 'react';
 import {
   FiUser,
@@ -13,6 +14,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { ThemeContext } from 'styled-components';
 
 import api from '../../services/api';
 
@@ -21,7 +23,6 @@ import { useToast } from '../../hooks/toast';
 import getValidationErros from '../../utils/getValidationErrors';
 
 import ForgotPasswordImage from '../../assets/forgot-password.png';
-import logo from '../../assets/logo.svg';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -40,6 +41,8 @@ interface FormRegisterData {
 }
 
 const Register: React.FC = () => {
+  const { logo } = useContext(ThemeContext);
+
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 

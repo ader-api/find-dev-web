@@ -23,7 +23,7 @@ export const Header = styled.div`
   }
 
   a {
-    color: var(--link-color);
+    color: ${(props) => props.theme.colors.linkColor};
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -37,7 +37,7 @@ export const Header = styled.div`
     }
 
     svg {
-      color: var(--link-color);
+      color: ${(props) => props.theme.colors.linkColor};
       margin-right: 16px;
     }
   }
@@ -58,7 +58,7 @@ export const Content = styled.div`
   }
 
   a {
-    color: var(--link-color);
+    color: ${(props) => props.theme.colors.linkColor};
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -73,7 +73,7 @@ export const Content = styled.div`
     }
 
     svg {
-      color: var(--button-color);
+      color: ${(props) => props.theme.colors.buttonColor};
       margin-right: 16px;
     }
   }
@@ -83,7 +83,7 @@ export const Content = styled.div`
     width: 340px;
 
     a {
-      color: var(--link-color);
+      color: ${(props) => props.theme.colors.linkColor};
       display: block;
       margin-top: 24px;
       text-decoration: none;

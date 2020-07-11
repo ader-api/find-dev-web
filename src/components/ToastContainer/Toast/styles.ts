@@ -45,17 +45,17 @@ export const Container = styled.div<ContainerProps>`
   }
 
   ${(props) => props.type === 'info' && css`
-    background: var(--info-color);
-    border-left: 10px solid var(--info-text-color);
+    background: ${(props) => props.theme.colors.infoColor};
+    border-left: 10px solid ${(props) => props.theme.colors.infoTextColor};
   `}
 
   ${(props) => props.type === 'success' && css`
-    background: var(--success-color);
-    border-left: 10px solid var(--success-text-color);
+    background: ${(props) => props.theme.colors.successColor};
+    border-left: 10px solid ${(props) => props.theme.colors.successTextColor};
   `}
 
   ${(props) => props.type === 'error' && css`
-    background: var(--error-color);
-    border-left: 10px solid var(--error-text-color);
+    background: ${(props) => props.theme.colors.errorColor};
+    border-left: 10px solid ${(props) => props.theme.colors.errorTextColor};
   `}
 `

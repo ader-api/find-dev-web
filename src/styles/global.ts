@@ -30,9 +30,9 @@ export default createGlobalStyle`
   }
 
   body {
-    background: var(--primary-color);
+    background: ${(props) => props.theme.colors.backgroundColor};
     -webkit-font-smoothing: antialiased;
-    color: var(--text-color);
+    color: ${(props) => props.theme.colors.textColor};
   }
 
   body, input, button {
@@ -41,7 +41,7 @@ export default createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6, strong {
     font-weight: 700;
-    color: var(--title-color);
+    color: ${(props) => props.theme.colors.titleColor};
   }
 
   button {

@@ -12,7 +12,7 @@ export const Container = styled.div`
   span {
     background: ${shade(.2, '#303D8B')};
     height: 56px;
-    color: var(--primary-color);
+    color: ${(props) => props.theme.colors.primary};
     padding: 0 16px;
 
     display: flex;
@@ -21,8 +21,8 @@ export const Container = styled.div`
   }
 
   button {
-    background: var(--button-color);
-    color: var(--primary-color);
+    background: ${(props) => props.theme.colors.buttonColor};
+    color: ${(props) => props.theme.colors.primary};
     border: 0;
     padding:  16px;
     height: 56px;

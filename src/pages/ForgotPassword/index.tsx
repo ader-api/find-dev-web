@@ -1,19 +1,20 @@
 import React, {
   useRef,
   useCallback,
+  useContext,
 } from 'react';
 import { FiMail, FiArrowLeft, FiCornerDownRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { ThemeContext } from 'styled-components';
 
 import { useToast } from '../../hooks/toast';
 
 import getValidationErros from '../../utils/getValidationErrors';
 
 import ForgotPasswordImage from '../../assets/forgot-password.png';
-import logo from '../../assets/logo.svg';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -29,6 +30,8 @@ interface ForgotPasswordFormData {
 }
 
 const ForgotPassword: React.FC = () => {
+  const { logo } = useContext(ThemeContext);
+
   const formRef = useRef<FormHandles>(null);
 
   const { addToast } = useToast();

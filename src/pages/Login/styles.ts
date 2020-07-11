@@ -33,7 +33,7 @@ export const Content = styled.div`
     width: 340px;
 
     a {
-      color: var(--link-color);
+      color: ${(props) => props.theme.colors.linkColor};
       display: block;
       margin-top: 24px;
       text-decoration: none;

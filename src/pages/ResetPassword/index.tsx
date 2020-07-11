@@ -1,19 +1,20 @@
 import React, {
   useRef,
   useCallback,
+  useContext,
 } from 'react';
 import { FiArrowLeft, FiCornerDownRight, FiLock } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { ThemeContext } from 'styled-components';
 
 import { useToast } from '../../hooks/toast';
 
 import getValidationErros from '../../utils/getValidationErrors';
 
 import ResetPasswordImage from '../../assets/forgot-password.png';
-import logo from '../../assets/logo.svg';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -29,6 +30,8 @@ interface ResetPasswordFormData {
 }
 
 const ResetPassword: React.FC = () => {
+  const { logo } = useContext(ThemeContext);
+
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 
