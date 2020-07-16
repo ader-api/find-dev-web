@@ -17,7 +17,7 @@ const App: React.FC = () => {
 
   const toggleTheme = useCallback(() => {
     setTheme(theme.title === 'light' ? dark : light)
-  }, []);
+  }, [setTheme, theme.title]);
 
   return (
     <>

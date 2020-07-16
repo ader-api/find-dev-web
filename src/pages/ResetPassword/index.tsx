@@ -3,8 +3,8 @@ import React, {
   useCallback,
   useContext,
 } from 'react';
-import { FiArrowLeft, FiCornerDownRight, FiLock } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { FiCornerDownRight, FiLock } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
@@ -75,7 +75,7 @@ const ResetPassword: React.FC = () => {
         description: 'Please check the credentials and try again',
       });
     }
-  }, [addToast]);
+  }, [addToast, history]);
 
   return (
     <Container>

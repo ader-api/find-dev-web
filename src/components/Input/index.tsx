@@ -36,13 +36,13 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...props }) => {
 
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
-  }, [isFocused]);
+  }, []);
 
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
 
     setIsFilled(!!inputRef.current?.value);
-  }, [isFocused, isFilled]);
+  }, []);
 
   return (
     <Container isFocused={isFocused} isFilled={isFilled} isErrored={!!error}>

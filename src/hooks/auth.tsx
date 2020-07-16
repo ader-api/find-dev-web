@@ -6,9 +6,16 @@ import React, {
 } from 'react';
 import api from '../services/api';
 
+interface User {
+  id: string;
+  name: string;
+  password: string;
+  confirm_password: string;
+}
+
 interface AuthProps {
   token: string;
-  user: object;
+  user: User;
 }
 
 interface LoginProps {
@@ -17,7 +24,7 @@ interface LoginProps {
 }
 
 interface AuthContextData {
-  user: object;
+  user: User;
   logIn(credentials: LoginProps): Promise<void>;
   logOut(): void;
 }
