@@ -1,12 +1,10 @@
 import React, {
-  useContext,
   useState,
   useEffect,
   useRef,
   useCallback,
 } from 'react';
 import { Link } from 'react-router-dom';
-import { ThemeContext } from 'styled-components';
 import { FiLogOut, FiSearch, FiChevronRight } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -16,8 +14,12 @@ import Select from '../../components/Select';
 
 import api from '../../services/api';
 
+import logo from '../../assets/logo-dark.svg';
+
 import {
   Container,
+  Content,
+  Menu,
   Header,
   HeaderContent,
   DashboardContent,
@@ -44,11 +46,10 @@ interface FormData {
 }
 
 const Dashboard: React.FC = () => {
-  const { logo } = useContext(ThemeContext);
-
   const formRef = useRef<FormHandles>(null);
 
   const [developers, setDevelopers] = useState<IDevelopers[]>([]);
+  const [researchedDevelopers, setResearchedDevelopers] = useState<IDevelopers[]>([]);
   const [techs, setTechs] = useState<ITechs[]>([]);
   const [optionsTech, setOptionsTech] = useState<string[]>([]);
 
@@ -56,6 +57,7 @@ const Dashboard: React.FC = () => {
     async function loadDevelopers(): Promise<void> {
       await api.get('/developers').then(response => {
         setDevelopers(response.data);
+        setResearchedDevelopers(response.data);
       });
     }
 
@@ -80,75 +82,82 @@ const Dashboard: React.FC = () => {
 
   const handleSearchDeveloper = useCallback(async (data: FormData) => {
     if(data.tech !== '') {
-      const filteredDevs = developers.find(developer => {
-        return developer.techs.filter(tech => tech.name === data.tech);
+      const filteredDevs = developers.filter(developer => {
+        return developer.techs.find(tech => tech.name === data.tech);
       });
-
-      console.log(filteredDevs);
 
       if(!filteredDevs) {
         throw new Error('None developer was found');
       }
 
-      setDevelopers([filteredDevs]);
+      setResearchedDevelopers(filteredDevs);
     } else {
       await api.get('/developers').then(response => {
-        setDevelopers(response.data);
+        setResearchedDevelopers(response.data);
       });
     }
   }, [developers]);
 
   return (
     <Container>
-      <Header>
-        <HeaderContent>
-          <img className="logo" src={logo} alt="FindDev" />
+      <Menu>
+        <img src={logo} alt="FindDev" />
 
-          <Link to="/">
-            <FiLogOut size={20} />
-          </Link>
-        </HeaderContent>
-      </Header>
+        <Link to="/">
+          <FiLogOut size={20} />
 
-      <DashboardContent>
-        <Form ref={formRef} onSubmit={handleSearchDeveloper}>
-          <div>
-            <h1>Find a developer</h1>
+          Log out
+        </Link>
+      </Menu>
 
-            <Select name="tech" options={optionsTech} first_option="Tech"/>
+      <Content>
+        <Header>
+          <HeaderContent>
+            <img src="https://avatars1.githubusercontent.com/u/45057940?s=460&u=7b54fe90dcf704f572207b0a2a7f59f948fdd63e&v=4" alt=""/>
+            <p>Recruiter</p>
+          </HeaderContent>
+        </Header>
 
-            <Button icon={FiSearch}>
-              Search
-            </Button>
-          </div>
-        </Form>
+        <DashboardContent>
+          <Form ref={formRef} onSubmit={handleSearchDeveloper}>
+            <div>
+              <h1>Find a developer</h1>
 
-        <ResultContent>
-          {developers.map(developer => (
-            <Developer key={developer.id}>
-              <main>
-                <header>
-                  <img src={developer.avatar_url} alt={developer.name}/>
+              <Select name="tech" options={optionsTech} first_option="Tech"/>
 
-                  <div>
-                    <strong>{developer.name}</strong>
+              <Button icon={FiSearch}>
+                Search
+              </Button>
+            </div>
+          </Form>
 
-                    <Techs>
-                      {developer.techs.map(tech => (
-                        <p key={tech.id}>{tech.name}</p>
-                      ))}
-                    </Techs>
-                  </div>
-                </header>
+          <ResultContent>
+            {researchedDevelopers.map(developer => (
+              <Developer key={developer.id}>
+                <main>
+                  <header>
+                    <img src={developer.avatar_url} alt={developer.name}/>
 
-                <p>{developer.email}</p>
-              </main>
+                    <div>
+                      <strong>{developer.name}</strong>
 
-              <FiChevronRight size={24} />
-            </Developer>
-          ))}
-        </ResultContent>
-      </DashboardContent>
+                      <Techs>
+                        {developer.techs.map(tech => (
+                          <p key={tech.id}>{tech.name}</p>
+                        ))}
+                      </Techs>
+                    </div>
+                  </header>
+
+                  <p>{developer.email}</p>
+                </main>
+
+                <FiChevronRight size={24} />
+              </Developer>
+            ))}
+          </ResultContent>
+        </DashboardContent>
+      </Content>
     </Container>
   );
 };

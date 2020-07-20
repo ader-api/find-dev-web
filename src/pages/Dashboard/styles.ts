@@ -3,13 +3,53 @@ import { shade } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
+
+  display: flex;
+`;
+
+export const Content = styled.main`
+  flex: 1;
+`;
+
+export const Menu = styled.div`
+  height: 100vh;
+  width: 250px;
+  background: ${props => props.theme.colors.buttonColor};
+  padding: 20px 0 35px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    height: 32px;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 16px;
+    }
+
+    &:hover {
+      opacity: .9;
+
+      svg {
+        opacity: .9;
+      }
+    }
+  }
 `;
 
 export const Header = styled.header`
   height: 64px;
   background: ${(props) => props.theme.colors.secondary};
-  box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.1);
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 `;
 
 export const HeaderContent = styled.div`
@@ -17,36 +57,24 @@ export const HeaderContent = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: auto;
-  padding: 0 15px;
+  padding: 5px 30px;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
   img {
-    height: 44px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 12px;
   }
-
-  a {
-    color: ${(props) => props.theme.colors.linkColor};
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-
-    &:hover {
-      color: ${shade(.2, '#FE2E2C')};
-
-      svg {
-        color: ${shade(.2, '#FE2E2C')};
-      }
-    }
-  }
-`
+`;
 
 export const DashboardContent = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: auto;
+  padding: 0 30px;
 
   form {
     border-bottom: 2px solid ${(props) => props.theme.colors.secondary};
@@ -55,6 +83,10 @@ export const DashboardContent = styled.div`
 
     > div {
       max-width: 254px;
+
+      @media(max-width: 575px) {
+        max-width: 100%;
+      }
     }
 
     h1 {
@@ -69,6 +101,10 @@ export const ResultContent = styled.main`
   column-gap: 16px;
   row-gap: 16px;
   margin-top: 32px;
+
+  @media(max-width: 575px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 export const Developer = styled.div`
