@@ -5,12 +5,14 @@ import React, {
   useCallback,
 } from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogOut, FiSearch, FiChevronRight } from 'react-icons/fi';
+import { FiLogOut, FiSearch, FiChevronRight, FiGrid, FiSend } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
 import Button from '../../components/Button';
 import Select from '../../components/Select';
+
+import { useAuth } from '../../hooks/auth';
 
 import api from '../../services/api';
 
@@ -23,7 +25,7 @@ import {
   Header,
   HeaderContent,
   DashboardContent,
-  ResultContent,
+  DevelopersContent,
   Developer,
   Techs,
 } from './styles';
@@ -47,11 +49,17 @@ interface FormData {
 
 const Dashboard: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const { user, logOut } = useAuth();
 
   const [developers, setDevelopers] = useState<IDevelopers[]>([]);
   const [researchedDevelopers, setResearchedDevelopers] = useState<IDevelopers[]>([]);
   const [techs, setTechs] = useState<ITechs[]>([]);
   const [optionsTech, setOptionsTech] = useState<string[]>([]);
+
+  const newDate = new Date()
+  const date = newDate.getDate();
+  const month = newDate.getMonth() + 1;
+  const year = newDate.getFullYear();
 
   useEffect(() => {
     async function loadDevelopers(): Promise<void> {
@@ -101,9 +109,29 @@ const Dashboard: React.FC = () => {
   return (
     <Container>
       <Menu>
-        <img src={logo} alt="FindDev" />
+        <div>
+          <img src={logo} alt="FindDev" />
 
-        <Link to="/">
+          <ul>
+            <li className="active">
+              <Link to="/dashboard">
+                <FiGrid size={20} />
+
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link to="#">
+                <FiSend size={20} />
+
+                Messages
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+
+        <Link to="/" onClick={logOut}>
           <FiLogOut size={20} />
 
           Log out
@@ -113,8 +141,8 @@ const Dashboard: React.FC = () => {
       <Content>
         <Header>
           <HeaderContent>
-            <img src="https://avatars1.githubusercontent.com/u/45057940?s=460&u=7b54fe90dcf704f572207b0a2a7f59f948fdd63e&v=4" alt=""/>
-            <p>Recruiter</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRypNzzLfIB0sxt_f_XxEHF7eKk1OLaXlksbg&usqp=CAU" alt={user.name}/>
+            <p>{user.name}</p>
           </HeaderContent>
         </Header>
 
@@ -123,15 +151,26 @@ const Dashboard: React.FC = () => {
             <div>
               <h1>Find a developer</h1>
 
-              <Select name="tech" options={optionsTech} first_option="Tech"/>
+              <main>
+                <Select
+                  name="tech"
+                  options={optionsTech}
+                  first_option="Tech"
+                  styledContainer={{ marginRight: 12 }}
+                />
 
-              <Button icon={FiSearch}>
-                Search
-              </Button>
+                <Button icon={FiSearch}>
+                  Search
+                </Button>
+              </main>
             </div>
+
+            <time>{`${date}/${month}/${year}`}</time>
           </Form>
 
-          <ResultContent>
+          <p>Developers {researchedDevelopers.length}</p>
+
+          <DevelopersContent>
             {researchedDevelopers.map(developer => (
               <Developer key={developer.id}>
                 <main>
@@ -155,7 +194,7 @@ const Dashboard: React.FC = () => {
                 <FiChevronRight size={24} />
               </Developer>
             ))}
-          </ResultContent>
+          </DevelopersContent>
         </DashboardContent>
       </Content>
     </Container>

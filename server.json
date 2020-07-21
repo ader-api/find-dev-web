@@ -2,17 +2,20 @@
   "users": [
     {
       "id": 1,
-      "name": "Recruiter",
-      "email": "recruiter@finddev.com",
+      "name": "Recruiter 1",
+      "email": "recruiter1@finddev.com",
+      "password": "123123",
+      "confirm_password": "123123"
+    },
+    {
+      "id": 2,
+      "name": "Recruiter 2",
+      "email": "recruiter2@finddev.com",
       "password": "123123",
       "confirm_password": "123123"
     }
   ],
-
-  "sessions": [
-    {}
-  ],
-
+  "sessions": [],
   "techs": [
     {
       "id": 1,
@@ -35,7 +38,6 @@
       "name": "SQL"
     }
   ],
-
   "developers": [
     {
       "id": 1,
@@ -48,8 +50,12 @@
           "name": "Node.js"
         },
         {
-          "id": 1,
-          "name": "Java"
+          "id": 3,
+          "name": "ReactJS"
+        },
+        {
+          "id": 5,
+          "name": "SQL"
         }
       ]
     },
@@ -62,6 +68,10 @@
         {
           "id": 1,
           "name": "Java"
+        },
+        {
+          "id": 4,
+          "name": "React Native"
         }
       ]
     },
@@ -74,6 +84,10 @@
         {
           "id": 2,
           "name": "Node.js"
+        },
+        {
+          "id": 3,
+          "name": "ReactJS"
         }
       ]
     },

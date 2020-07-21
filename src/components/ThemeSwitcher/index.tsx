@@ -19,8 +19,8 @@ const ThemeSwitcher: React.FC<ThemeProps> = ({ toggleTheme }) => {
         checked={title === 'dark'}
         checkedIcon={false}
         uncheckedIcon={false}
-        height={10}
-        width={40}
+        height={28}
+        width={60}
         handleDiameter={20}
         offColor={shade(.1, colors.secondary)}
         onColor={colors.buttonColor}

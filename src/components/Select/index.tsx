@@ -14,12 +14,14 @@ interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
   options: string[];
   first_option: string;
+  styledContainer?: object;
 }
 
 const Select: React.FC<ISelectProps> = ({
   name,
   options,
   first_option,
+  styledContainer = {},
   ...rest
 }) => {
   const selectRef = useRef<HTMLSelectElement>(null);
@@ -47,7 +49,7 @@ const Select: React.FC<ISelectProps> = ({
   }, [registerField, fieldName]);
 
   return  (
-    <Container isFocused={isFocused} isFilled={isFilled} >
+    <Container isFocused={isFocused} isFilled={isFilled} style={styledContainer}>
       <select
         onFocus={handleSelectFocus}
         onBlur={handleSelectBlur}

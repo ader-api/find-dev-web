@@ -9,12 +9,12 @@ import api from '../services/api';
 interface User {
   id: string;
   name: string;
+  email: string;
   password: string;
   confirm_password: string;
 }
 
 interface AuthProps {
-  token: string;
   user: User;
 }
 
@@ -49,21 +49,29 @@ const AuthProvider: React.FC = ({ children }) => {
   });
 
   const logIn = useCallback(async ({ email, password }: LoginProps) => {
-    const response = await api.post('/sessions', {
+    const responseUsers = await api.get<User[]>('/users');
+
+    const users = responseUsers.data;
+
+    const user = users
+      .find(user => user.email === email && user.password === password);
+
+    if(!user) {
+      throw new Error('User not exists');
+    }
+
+    await api.post('/sessions', {
+      id: user.id,
       email,
       password,
     });
 
-    const { token, user } = response.data;
-
-    localStorage.setItem('@FindDev:token', token);
     localStorage.setItem('@FindDev:user', JSON.stringify(user));
 
-    setUserData({ token, user });
+    setUserData({ user });
   }, []);
 
-  const logOut = useCallback(() => {
-    localStorage.removeItem('@FindDev:token');
+  const logOut = useCallback(async () => {
     localStorage.removeItem('@FindDev:user');
 
     setUserData({} as AuthProps);

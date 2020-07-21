@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
@@ -11,24 +10,55 @@ export const Content = styled.main`
   flex: 1;
 `;
 
-export const Menu = styled.div`
+export const Menu = styled.nav`
   height: 100vh;
   width: 250px;
   background: ${props => props.theme.colors.buttonColor};
-  padding: 20px 0 35px;
+  padding: 20px 15px 35px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
-  img {
-    height: 32px;
+  div {
+    width: 100%;
+
+    img {
+      height: 32px;
+      width: 100%;
+    }
+
+    ul {
+      margin-top: 32px;
+
+      li {
+        list-style: none;
+        padding: 12px;
+        border-radius: 20px;
+
+        &.active {
+          background: #fff;
+          box-shadow: 0px 8px 20px 0 rgba(0,0,0,0.34);
+
+          a {
+            color: ${props => props.theme.colors.buttonColor};
+          }
+        }
+
+        & + li {
+          margin-top: 12px;
+        }
+      }
+    }
   }
 
-  a {
+  a, button {
     color: #fff;
     text-decoration: none;
+    background: transparent;
+    border: 0;
+
     display: flex;
     align-items: center;
 
@@ -81,11 +111,25 @@ export const DashboardContent = styled.div`
     padding-bottom: 16px;
     margin-bottom: 16px;
 
-    > div {
-      max-width: 254px;
+    display: flex;
+    justify-content: space-between;
 
-      @media(max-width: 575px) {
-        max-width: 100%;
+    > div {
+      flex: 1;
+    }
+
+    main {
+      display: flex;
+      align-items: center;
+
+      div {
+        max-width: 254px;
+        width: 100%;
+        margin-top: 0 !important;
+
+        @media(max-width: 575px) {
+          max-width: 100%;
+        }
       }
     }
 
@@ -93,9 +137,13 @@ export const DashboardContent = styled.div`
       margin-bottom: 21px;
     }
   }
+
+  p, time {
+    color: #7F808C;
+  }
 `;
 
-export const ResultContent = styled.main`
+export const DevelopersContent = styled.main`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 16px;
@@ -134,6 +182,10 @@ export const Developer = styled.div`
         height: 64px;
         border-radius: 50%;
         margin-right: 16px;
+      }
+
+      strong {
+        font-size: 18px;
       }
     }
   }

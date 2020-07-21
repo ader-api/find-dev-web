@@ -10,7 +10,7 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import { ThemeContext } from 'styled-components';
 
-// import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 
 import getValidationErros from '../../utils/getValidationErrors';
@@ -36,7 +36,7 @@ const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 
-  // const { logIn } = useAuth();
+  const { logIn } = useAuth();
   const { addToast } = useToast();
 
   const handleLoginSubmit = useCallback(async (data: LoginFormData) => {
@@ -50,10 +50,10 @@ const Login: React.FC = () => {
         abortEarly: false,
       });
 
-      // await logIn({
-      //   email: data.email,
-      //   password: data.password,
-      // });
+      await logIn({
+        email: data.email,
+        password: data.password,
+      });
 
       history.push('/dashboard');
 
@@ -74,7 +74,7 @@ const Login: React.FC = () => {
         description: 'Verify the credentials and try again',
       });
     }
-  }, [addToast, history]);
+  }, [addToast, history, logIn]);
 
   return (
     <Container>
