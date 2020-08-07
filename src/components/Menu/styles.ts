@@ -17,7 +17,8 @@ export const Container = styled.div`
     .userArea {
       display: flex;
       flex-direction: column;
-      text-align: center;
+      align-items: center;
+
       padding-bottom: 54px;
       border-bottom: 2px solid rgba(255, 255, 255, .1);
 
@@ -31,6 +32,19 @@ export const Container = styled.div`
 
       strong {
         color: #fff;
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+
+      a {
+        font-size: 14px;
+        color: #fff;
+        opacity: .7;
+        transition: .2s ease all;
+
+        &:hover {
+          opacity: 1;
+        }
       }
     }
 
@@ -41,6 +55,12 @@ export const Container = styled.div`
         padding: 12px;
         border-radius: 20px;
         color: #fff;
+        opacity: .7;
+        transition: .2s ease all;
+
+        &:hover {
+          opacity: 1;
+        }
 
         & + a {
           margin-top: 12px;
@@ -50,6 +70,7 @@ export const Container = styled.div`
           background: #fff;
           box-shadow: 0px 8px 20px 0 rgba(0,0,0,0.34);
           color: ${props => props.theme.colors.buttonColor};
+          opacity: 1;
         }
       }
     }

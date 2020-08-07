@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { FiLogOut, FiGrid, FiSend } from 'react-icons/fi';
+import { FiLogOut, FiGrid, FiSend, FiSettings } from 'react-icons/fi';
 
 import { useAuth } from '../../hooks/auth';
 
@@ -15,6 +15,12 @@ const Menu: React.FC = () => {
         <div className="userArea">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRypNzzLfIB0sxt_f_XxEHF7eKk1OLaXlksbg&usqp=CAU" alt={user.name}/>
           <strong>{user.name}</strong>
+
+          <Link to="/">
+            <FiSettings size={14} />
+
+            Edit profile
+          </Link>
         </div>
 
         <nav>
