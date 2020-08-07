@@ -28,7 +28,7 @@ const Select: React.FC<ISelectProps> = ({
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
-  const { fieldName, registerField, error, defaultValue } = useField(name);
+  const { fieldName, registerField, defaultValue } = useField(name);
 
   const handleSelectFocus = useCallback(() => {
     setIsFocused(true);
