@@ -61,26 +61,28 @@ const Dashboard: React.FC = () => {
   const month = newDate.getMonth() + 1;
   const year = newDate.getFullYear();
 
-  useEffect(() => {
-    async function loadDevelopers(): Promise<void> {
-      await api.get('/developers').then(response => {
-        setDevelopers(response.data);
-        setResearchedDevelopers(response.data);
-      });
-    }
+  const loadDevelopers = useCallback(async (): Promise<void> => {
+    await api.get('/developers').then(response => {
+      setDevelopers(response.data);
+      setResearchedDevelopers(response.data);
+    });
+  }, []);
 
+  const loadTechs = useCallback(async (): Promise<void> => {
+    await api.get('/techs').then(response => {
+      setTechs(response.data);
+    });
+  }, []);
+
+  // Load developers - When init app
+  useEffect(() => {
     loadDevelopers();
-  }, []);
+  }, [loadDevelopers]);
 
+  // Load techs - When init app
   useEffect(() => {
-    async function loadTechs(): Promise<void> {
-      await api.get('/techs').then(response => {
-        setTechs(response.data);
-      });
-    }
-
     loadTechs();
-  }, []);
+  }, [loadTechs]);
 
   useEffect(() => {
     techs.map(tech => {
@@ -131,7 +133,7 @@ const Dashboard: React.FC = () => {
         </div>
 
 
-        <Link to="/" onClick={logOut}>
+        <Link to="/">
           <FiLogOut size={20} />
 
           Log out
