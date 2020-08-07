@@ -6,27 +6,33 @@ import React, {
 } from 'react';
 import api from '../services/api';
 
-interface User {
-  id: string;
+interface IUser {
+  id: number;
   name: string;
   email: string;
   password: string;
   confirm_password: string;
 }
 
-interface AuthProps {
-  user: User;
+interface ISession {
+  id: number;
+  email: string;
+  password: string;
 }
 
-interface LoginProps {
+interface IAuthProps {
+  user: IUser;
+}
+
+interface ILoginProps {
   email: string;
   password: string;
 }
 
 interface AuthContextData {
-  user: User;
-  logIn(credentials: LoginProps): Promise<void>;
-  logOut(): void;
+  user: IUser;
+  logIn(credentials: ILoginProps): Promise<void>;
+  logOut(id: number): Promise<void>;
 }
 
 // Context
@@ -34,22 +40,21 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 // Component
 const AuthProvider: React.FC = ({ children }) => {
-  const [userData, setUserData] = useState<AuthProps>(() => {
-    const token = localStorage.getItem('@FindDev:token');
+  const [sessions, setSessions] = useState<ISession[]>([]);
+  const [userData, setUserData] = useState<IAuthProps>(() => {
     const user = localStorage.getItem('@FindDev:user');
 
-    if(token && user) {
+    if(user) {
       return {
-        token,
         user: JSON.parse(user),
       }
     }
 
-    return {} as AuthProps;
+    return {} as IAuthProps;
   });
 
-  const logIn = useCallback(async ({ email, password }: LoginProps) => {
-    const responseUsers = await api.get<User[]>('/users');
+  const logIn = useCallback(async ({ email, password }: ILoginProps): Promise<void> => {
+    const responseUsers = await api.get<IUser[]>('/users');
 
     const users = responseUsers.data;
 
@@ -60,22 +65,36 @@ const AuthProvider: React.FC = ({ children }) => {
       throw new Error('User not exists');
     }
 
-    await api.post('/sessions', {
+    await api.post<ISession>('/sessions', {
       id: user.id,
       email,
       password,
     });
+
+    const newSession = {
+      id: user.id,
+      email,
+      password,
+    } as ISession;
+
+    setSessions([newSession]);
 
     localStorage.setItem('@FindDev:user', JSON.stringify(user));
 
     setUserData({ user });
   }, []);
 
-  const logOut = useCallback(async () => {
+  const logOut = useCallback(async (id: number): Promise<void> => {
+    await api.delete(`/sessions/${id}`);
+
+    const filteredSession = sessions.filter(session => session.id !== id);
+
+    setSessions(filteredSession);
+
     localStorage.removeItem('@FindDev:user');
 
-    setUserData({} as AuthProps);
-  }, []);
+    setUserData({} as IAuthProps);
+  }, [sessions]);
 
   return (
     <AuthContext.Provider value={{ user: userData.user, logIn, logOut }}>

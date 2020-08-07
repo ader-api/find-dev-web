@@ -15,7 +15,9 @@
       "confirm_password": "123123"
     }
   ],
-  "sessions": [],
+  "sessions": [
+    {}
+  ],
   "techs": [
     {
       "id": 1,

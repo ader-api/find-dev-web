@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { FiLogOut, FiGrid, FiSend, FiSettings } from 'react-icons/fi';
+import { FiLogOut, FiGrid, FiSend, FiSettings, FiUser } from 'react-icons/fi';
 
 import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 import { Container } from './styles';
 
 const Menu: React.FC = () => {
   const { user, logOut } = useAuth();
+  const { addToast } = useToast();
+
+  const handleLogOut = useCallback(async (user_id: number) => {
+    await logOut(user_id);
+
+    addToast({
+      type: 'success',
+      title: 'Logged out',
+    });
+  }, [addToast, logOut]);
 
   return (
     <Container>
@@ -35,15 +46,20 @@ const Menu: React.FC = () => {
 
             Messages
           </NavLink>
+
+          <NavLink to="/account" activeClassName="active">
+            <FiUser size={20} />
+
+            Account
+          </NavLink>
         </nav>
       </div>
 
-
-      <Link to="/">
+      <button type="button" onClick={() => { handleLogOut(user.id) }}>
         <FiLogOut size={20} />
 
         Log out
-      </Link>
+      </button>
     </Container>
   );
 };

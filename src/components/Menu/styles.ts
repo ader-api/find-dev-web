@@ -63,7 +63,7 @@ export const Container = styled.div`
         }
 
         & + a {
-          margin-top: 12px;
+          margin-top: 4px;
         }
 
         &.active {

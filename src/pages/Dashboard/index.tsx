@@ -40,7 +40,7 @@ interface IDevelopers {
   techs: ITechs[];
 }
 
-interface FormData {
+interface IFormData {
   tech: string;
 }
 
@@ -88,7 +88,7 @@ const Dashboard: React.FC = () => {
     });
   }, [techs]);
 
-  const handleSearchDeveloper = useCallback(async (data: FormData) => {
+  const handleSearchDeveloper = useCallback(async (data: IFormData) => {
     if(data.tech !== '') {
       const filteredDevs = developers.filter(developer => {
         return developer.techs.find(tech => tech.name === data.tech);

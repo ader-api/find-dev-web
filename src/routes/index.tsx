@@ -1,7 +1,7 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
-// import Route from './Route';
+import Route from './Route';
 
 import Login from '../pages/Login';
 import Register from '../pages/Register';
@@ -18,7 +18,7 @@ const Routes: React.FC = () => {
       <Route component={ForgotPassword} path="/forgot-password" />
       <Route component={ResetPassword} path="/reset-password" />
 
-      <Route component={Dashboard} path="/dashboard" />
+      <Route component={Dashboard} path="/dashboard" isPrivate />
     </Switch>
   );
 };
