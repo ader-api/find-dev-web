@@ -21,12 +21,12 @@ export const Container = styled.div<ContainerProps>`
     margin-right: 16px;
   }
 
+  strong, p, svg {
+    color: #111;
+  }
+
   div {
     flex: 1;
-
-    strong, p, svg {
-      color: inherit;
-    }
 
     p {
       font-size: 14px;

@@ -27,9 +27,11 @@ export const Container = styled.div<IContainerProps>`
   select {
     -webkit-appearance: none;
     -moz-appearance: none;
+    -ms-appearance: none;
     appearance: none;
+
     flex: 1;
-    background: transparent;
+    background: ${(props) => props.theme.colors.secondary};
     border-radius: 8px;
     outline: 0;
     border: 0;
@@ -45,5 +47,8 @@ export const Container = styled.div<IContainerProps>`
     transform: translateY(-50%);
     top: 50%;
     right: 8px;
+    color: ${(props) => props.theme.colors.textColor};
+    opacity: .7;
+    z-index: 1;
   }
 `;
