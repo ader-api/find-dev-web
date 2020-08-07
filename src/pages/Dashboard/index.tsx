@@ -3,25 +3,22 @@ import React, {
   useEffect,
   useRef,
   useCallback,
+  useContext,
 } from 'react';
-import { Link } from 'react-router-dom';
-import { FiLogOut, FiSearch, FiChevronRight, FiGrid, FiSend } from 'react-icons/fi';
+import { FiSearch, FiChevronRight } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import { ThemeContext } from 'styled-components';
 
+import Menu from '../../components/Menu';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 
-import { useAuth } from '../../hooks/auth';
-
 import api from '../../services/api';
-
-import logo from '../../assets/logo-dark.svg';
 
 import {
   Container,
   Content,
-  Menu,
   Header,
   HeaderContent,
   DashboardContent,
@@ -48,8 +45,9 @@ interface FormData {
 }
 
 const Dashboard: React.FC = () => {
+  const { logo } = useContext(ThemeContext);
+
   const formRef = useRef<FormHandles>(null);
-  const { user, logOut } = useAuth();
 
   const [developers, setDevelopers] = useState<IDevelopers[]>([]);
   const [researchedDevelopers, setResearchedDevelopers] = useState<IDevelopers[]>([]);
@@ -110,41 +108,12 @@ const Dashboard: React.FC = () => {
 
   return (
     <Container>
-      <Menu>
-        <div>
-          <img src={logo} alt="FindDev" />
-
-          <ul>
-            <li className="active">
-              <Link to="/dashboard">
-                <FiGrid size={20} />
-
-                Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link to="#">
-                <FiSend size={20} />
-
-                Messages
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-
-        <Link to="/">
-          <FiLogOut size={20} />
-
-          Log out
-        </Link>
-      </Menu>
+      <Menu />
 
       <Content>
         <Header>
           <HeaderContent>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRypNzzLfIB0sxt_f_XxEHF7eKk1OLaXlksbg&usqp=CAU" alt={user.name}/>
-            <p>{user.name}</p>
+            <img src={logo} alt="FindDev" />
           </HeaderContent>
         </Header>
 

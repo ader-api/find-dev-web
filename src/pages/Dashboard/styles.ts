@@ -10,72 +10,6 @@ export const Content = styled.main`
   flex: 1;
 `;
 
-export const Menu = styled.nav`
-  height: 100vh;
-  width: 250px;
-  background: ${props => props.theme.colors.buttonColor};
-  padding: 20px 15px 35px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  div {
-    width: 100%;
-
-    img {
-      height: 32px;
-      width: 100%;
-    }
-
-    ul {
-      margin-top: 32px;
-
-      li {
-        list-style: none;
-        padding: 12px;
-        border-radius: 20px;
-
-        &.active {
-          background: #fff;
-          box-shadow: 0px 8px 20px 0 rgba(0,0,0,0.34);
-
-          a {
-            color: ${props => props.theme.colors.buttonColor};
-          }
-        }
-
-        & + li {
-          margin-top: 12px;
-        }
-      }
-    }
-  }
-
-  a, button {
-    color: #fff;
-    text-decoration: none;
-    background: transparent;
-    border: 0;
-
-    display: flex;
-    align-items: center;
-
-    svg {
-      margin-right: 16px;
-    }
-
-    &:hover {
-      opacity: .9;
-
-      svg {
-        opacity: .9;
-      }
-    }
-  }
-`;
-
 export const Header = styled.header`
   height: 64px;
   background: ${(props) => props.theme.colors.secondary};
@@ -93,10 +27,7 @@ export const HeaderContent = styled.div`
   align-items: center;
 
   img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    margin-right: 12px;
+    height: 32px;
   }
 `;
 
