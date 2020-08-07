@@ -15,7 +15,7 @@ import { useToast } from '../../hooks/toast';
 
 import getValidationErros from '../../utils/getValidationErrors';
 
-import loginImage from '../../assets/login.jpg';
+import loginImage from '../../assets/find-dev.png';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';

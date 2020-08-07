@@ -14,7 +14,7 @@ import { useToast } from '../../hooks/toast';
 
 import getValidationErros from '../../utils/getValidationErrors';
 
-import ResetPasswordImage from '../../assets/forgot-password.png';
+import ResetPasswordImage from '../../assets/find-dev.png';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
