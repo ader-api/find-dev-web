@@ -18,6 +18,8 @@
 ## 🔗 Table of contents
 - [Features](#features)
 - [Technologies](#technologies)
+- [Installation](#installation)
+- [Starting](#starting)
 - [Project](#project)
 - [Contribute](#contribute)
 - [License](#license)
@@ -34,16 +36,50 @@
 - [ReactJS](https://pt-br.reactjs.org/)
 - [React Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Styled components](https://styled-components.com/docs/basics)
+- [Feather Icons](https://react-icons.github.io/react-icons/icons?name=fi)
+- [Unform](https://github.com/Rocketseat/unform)
+
+## 📂 Installation <a name="installation"/>
+
+First of all, it is important that you have installed [Yarn](https://yarnpkg.com/).
+
+So, run this command in terminal to clone the project via HTTPS:
+
+```bash
+git clone https://github.com/fernandogatto/find-dev-web.git
+```
+
+SSH URLs provide access to a Git repository via SSH, a secure protocol. If you have a SSH key registered in your Github account, clone the project using this command:
+
+```bash
+git@github.com:fernandogatto/find-dev-web.git
+```
+
+**Install dependencies**
+
+```bash
+yarn install
+```
+
+**Run API**
+
+```bash
+yarn json-server server.json -p 3333
+```
+
+## 🚀 Starting <a name="starting"/>
+
+Run the following command in order in terminal:
+
+```bash
+# Start the server
+yarn start
+```
 
 ## 💻 Project <a name="project"/>
 
-![](/github/login.png)
-
-![](/github/register.png)
-
-![](/github/forgot-password.png)
-
-![](/github/reset-password.png)
+![](/github/dashboard.gif)
 
 ## 👍 Contribute <a name="contribute"/>
 
