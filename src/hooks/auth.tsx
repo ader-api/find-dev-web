@@ -12,6 +12,7 @@ interface IUser {
   email: string;
   password: string;
   confirm_password: string;
+  avatar_url: string;
 }
 
 interface ISession {
@@ -33,6 +34,7 @@ interface AuthContextData {
   user: IUser;
   logIn(credentials: ILoginProps): Promise<void>;
   logOut(id: number): Promise<void>;
+  updateUser(user: IUser): Promise<void>;
 }
 
 // Context
@@ -41,6 +43,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 // Component
 const AuthProvider: React.FC = ({ children }) => {
   const [sessions, setSessions] = useState<ISession[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
   const [userData, setUserData] = useState<IAuthProps>(() => {
     const user = localStorage.getItem('@FindDev:user');
 
@@ -96,8 +99,20 @@ const AuthProvider: React.FC = ({ children }) => {
     setUserData({} as IAuthProps);
   }, [sessions]);
 
+  const updateUser = useCallback(async (user: IUser) => {
+    await api.put(`/users/${user.id}`, user);
+
+    const filteredUser = users.filter(logged => logged.id !== user.id);
+
+    setUsers([...filteredUser, user]);
+
+    localStorage.setItem('@FindDev:user', JSON.stringify(user));
+
+    setUserData({ user });
+  }, [users]);
+
   return (
-    <AuthContext.Provider value={{ user: userData.user, logIn, logOut }}>
+    <AuthContext.Provider value={{ user: userData.user, logIn, logOut, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

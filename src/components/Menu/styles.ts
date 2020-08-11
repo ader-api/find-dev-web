@@ -36,7 +36,7 @@ export const Container = styled.div`
         margin-bottom: 12px;
       }
 
-      a {
+      button {
         font-size: 14px;
         color: #fff;
         opacity: .7;

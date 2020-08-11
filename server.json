@@ -9,14 +9,20 @@
     },
     {
       "id": 2,
-      "name": "Recruiter 2",
-      "email": "recruiter2@finddev.com",
+      "name": "Fernando Gatto",
+      "email": "fernandogatto@email.com",
       "password": "123123",
-      "confirm_password": "123123"
+      "confirm_password": "123123",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/45057940?s=460&u=7b54fe90dcf704f572207b0a2a7f59f948fdd63e&v=4"
     }
   ],
   "sessions": [
-    {}
+    {},
+    {
+      "id": 2,
+      "email": "fernandogatto@email.com",
+      "password": "123123"
+    }
   ],
   "techs": [
     {

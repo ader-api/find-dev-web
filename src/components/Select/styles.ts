@@ -39,7 +39,6 @@ export const Container = styled.div<IContainerProps>`
     font-size: 16px;
     color: ${(props) => props.theme.colors.textColor};
     cursor: pointer;
-    z-index: 1;
   }
 
   svg {
@@ -49,6 +48,5 @@ export const Container = styled.div<IContainerProps>`
     right: 8px;
     color: ${(props) => props.theme.colors.textColor};
     opacity: .7;
-    z-index: 1;
   }
 `;

@@ -1,15 +1,30 @@
-import React, { useCallback } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { FiLogOut, FiGrid, FiSend, FiSettings, FiUser } from 'react-icons/fi';
 
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 
+import ModalEditUser from '../ModalEditUser';
+
 import { Container } from './styles';
 
+interface IUser {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  confirm_password: string;
+  avatar_url: string;
+}
+
 const Menu: React.FC = () => {
-  const { user, logOut } = useAuth();
+  const { user, logOut, updateUser } = useAuth();
   const { addToast } = useToast();
+
+  const [editingUser, setEditingUser] = useState<IUser>({} as IUser);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
 
   const handleLogOut = useCallback(async (user_id: number) => {
     await logOut(user_id);
@@ -20,47 +35,67 @@ const Menu: React.FC = () => {
     });
   }, [addToast, logOut]);
 
+  const toggleModal = useCallback(() => {
+    setIsModalOpen(!isModalOpen);
+  }, [isModalOpen]);
+
+  const toggleEditModal = useCallback(() => {
+    setIsEditModalOpen(!isEditModalOpen);
+  }, [isEditModalOpen]);
+
+  const handleEditUser = useCallback((user: IUser) => {
+    setEditingUser(user);
+    setIsEditModalOpen(true);
+  }, []);
+
+  const handleUpdateUser = useCallback((user: IUser) => {
+    updateUser(user);
+  }, [updateUser]);
+
   return (
-    <Container>
-      <div>
-        <div className="userArea">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRypNzzLfIB0sxt_f_XxEHF7eKk1OLaXlksbg&usqp=CAU" alt={user.name}/>
-          <strong>{user.name}</strong>
+    <>
+      <Container>
+        <div>
+          <div className="userArea">
+            <img src={user.avatar_url} alt={user.name}/>
+            <strong>{user.name}</strong>
 
-          <Link to="/">
-            <FiSettings size={14} />
+            <button type="button" onClick={() => { handleEditUser(user) }}>
+              <FiSettings size={14} />
 
-            Edit profile
-          </Link>
+              Edit profile
+            </button>
+          </div>
+
+          <nav>
+            <NavLink to="/dashboard" activeClassName="active">
+              <FiGrid size={20} />
+
+              Dashboard
+            </NavLink>
+
+            <NavLink to="/messages" activeClassName="active">
+              <FiSend size={20} />
+
+              Messages
+            </NavLink>
+          </nav>
         </div>
 
-        <nav>
-          <NavLink to="/dashboard" activeClassName="active">
-            <FiGrid size={20} />
+        <button type="button" onClick={() => { handleLogOut(user.id) }}>
+          <FiLogOut size={20} />
 
-            Dashboard
-          </NavLink>
+          Log out
+        </button>
+      </Container>
 
-          <NavLink to="/messages" activeClassName="active">
-            <FiSend size={20} />
-
-            Messages
-          </NavLink>
-
-          <NavLink to="/account" activeClassName="active">
-            <FiUser size={20} />
-
-            Account
-          </NavLink>
-        </nav>
-      </div>
-
-      <button type="button" onClick={() => { handleLogOut(user.id) }}>
-        <FiLogOut size={20} />
-
-        Log out
-      </button>
-    </Container>
+      <ModalEditUser
+        isOpen={isEditModalOpen}
+        setIsOpen={toggleEditModal}
+        editingUser={editingUser}
+        handleUpdateUser={handleUpdateUser}
+      />
+    </>
   );
 };
 
