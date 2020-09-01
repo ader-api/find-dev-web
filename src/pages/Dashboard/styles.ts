@@ -84,6 +84,10 @@ export const DevelopersContent = styled.main`
   @media(max-width: 575px) {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const Developer = styled.div`

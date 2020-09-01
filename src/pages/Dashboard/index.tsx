@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useContext,
 } from 'react';
+import { Link } from 'react-router-dom';
 import { FiSearch, FiChevronRight } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -143,27 +144,29 @@ const Dashboard: React.FC = () => {
 
           <DevelopersContent>
             {researchedDevelopers.map(developer => (
-              <Developer key={developer.id}>
-                <main>
-                  <header>
-                    <img src={developer.avatar_url} alt={developer.name}/>
+              <Link to={`/profile/${developer.id}`}>
+                <Developer key={developer.id}>
+                  <main>
+                    <header>
+                      <img src={developer.avatar_url} alt={developer.name}/>
 
-                    <div>
-                      <strong>{developer.name}</strong>
+                      <div>
+                        <strong>{developer.name}</strong>
 
-                      <Techs>
-                        {developer.techs.map(tech => (
-                          <p key={tech.id}>{tech.name}</p>
-                        ))}
-                      </Techs>
-                    </div>
-                  </header>
+                        <Techs>
+                          {developer.techs.map(tech => (
+                            <p key={tech.id}>{tech.name}</p>
+                          ))}
+                        </Techs>
+                      </div>
+                    </header>
 
-                  <p>{developer.email}</p>
-                </main>
+                    <p>{developer.email}</p>
+                  </main>
 
-                <FiChevronRight size={24} />
-              </Developer>
+                  <FiChevronRight size={24} />
+                </Developer>
+              </Link>
             ))}
           </DevelopersContent>
         </DashboardContent>
