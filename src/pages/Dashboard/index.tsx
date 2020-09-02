@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from 'react';
 import { Link } from 'react-router-dom';
-import { FiSearch, FiChevronRight } from 'react-icons/fi';
+import { FiSearch, FiChevronRight, FiMapPin } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { ThemeContext } from 'styled-components';
@@ -38,6 +38,7 @@ interface IDevelopers {
   name: string;
   email: string;
   avatar_url: string;
+  status: string;
   techs: ITechs[];
 }
 
@@ -151,17 +152,23 @@ const Dashboard: React.FC = () => {
                       <img src={developer.avatar_url} alt={developer.name}/>
 
                       <div>
-                        <strong>{developer.name}</strong>
+                        <div>
+                          <strong>{developer.name}</strong>
+                          <span className={developer.status}>{developer.status}</span>
+                        </div>
 
-                        <Techs>
-                          {developer.techs.map(tech => (
-                            <p key={tech.id}>{tech.name}</p>
-                          ))}
-                        </Techs>
+                        <div>
+                          <FiMapPin size={18} />
+                          <p>Rio de Janeiro, RJ</p>
+                        </div>
                       </div>
                     </header>
 
-                    <p>{developer.email}</p>
+                    <Techs>
+                      {developer.techs.map(tech => (
+                        <p key={tech.id}>{tech.name}</p>
+                      ))}
+                    </Techs>
                   </main>
 
                   <FiChevronRight size={24} />

@@ -18,7 +18,7 @@ export default {
     infoColor: '#dee2e6',
     infoTextColor: '#090E45',
 
-    successColor: '#b2ff9e',
+    successColor: '#52b788',
     successTextColor: '#283618',
 
     errorColor: '#ff686b',

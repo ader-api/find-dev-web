@@ -53,6 +53,7 @@
       "name": "Fernando Gatto",
       "email": "fernandogatto@email.com",
       "avatar_url": "https://avatars1.githubusercontent.com/u/45057940?s=460&u=7b54fe90dcf704f572207b0a2a7f59f948fdd63e&v=4",
+      "status": "available",
       "techs": [
         {
           "id": 2,
@@ -73,6 +74,7 @@
       "name": "Sabrina Alencar",
       "email": "sabrinaalencar@email.com",
       "avatar_url": "https://avatars3.githubusercontent.com/u/52963407?s=460&u=e395fd11e2a902ce5c3a73be91bf39f0434b3b03&v=4",
+      "status": "available",
       "techs": [
         {
           "id": 1,
@@ -89,6 +91,7 @@
       "name": "Luann Sapucaia",
       "email": "sapucaialuann@email.com",
       "avatar_url": "https://avatars0.githubusercontent.com/u/37882760?s=460&u=54bb1938fce5bdd8332cc5e3bd820e1d11e8b826&v=4",
+      "status": "unavailable",
       "techs": [
         {
           "id": 2,
@@ -105,6 +108,7 @@
       "name": "Gabriel Marinho",
       "email": "marinhogabriel@email.com",
       "avatar_url": "https://avatars0.githubusercontent.com/u/28984561?s=460&u=46c0aaaf81254f22fa33db9832ce8f45d317cb28&v=4",
+      "status": "available",
       "techs": [
         {
           "id": 1,

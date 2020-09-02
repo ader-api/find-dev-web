@@ -112,6 +112,13 @@ export const Developer = styled.div`
       display: flex;
       margin-bottom: 8px;
 
+      > div > div {
+        display: flex;
+        align-items: center;
+
+        margin-bottom: 4px;
+      }
+
       img {
         width: 64px;
         height: 64px;
@@ -121,6 +128,30 @@ export const Developer = styled.div`
 
       strong {
         font-size: 18px;
+      }
+
+      span {
+        margin-left: 8px;
+        padding: 2px 8px;
+        text-align: center;
+        border-radius: 16px;
+        text-transform: capitalize;
+        font-weight: 700;
+      }
+
+      .available {
+        border: 2px solid ${props => props.theme.colors.successColor};
+        color: ${props => props.theme.colors.successColor};
+      }
+
+      .unavailable {
+        border: 2px solid ${props => props.theme.colors.errorColor};
+        color: ${props => props.theme.colors.errorColor};
+      }
+
+      svg {
+        margin-right: 4px;
+        color: ${props => props.theme.colors.linkColor};
       }
     }
   }

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FiLogOut, FiGrid, FiSend, FiSettings, FiUser } from 'react-icons/fi';
+import { FiLogOut, FiGrid, FiSend, FiSettings } from 'react-icons/fi';
 
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
